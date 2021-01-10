@@ -26,7 +26,8 @@ public class FlappyBox implements ActionListener, MouseListener, KeyListener
   public Renderer renderer;
   public Rectangle box;
   public Random rand;
-  public int ticks,yMotion, score; 
+  public int ticks,yMotion; 
+  public int score = 0;
   public ArrayList<Rectangle> columns;
   public boolean gameOver, started;
   public FlappyBox()
@@ -205,11 +206,13 @@ public class FlappyBox implements ActionListener, MouseListener, KeyListener
       }
       if (gameOver)
       {
+          score = 0;
           g.drawString("Game Over!", 100, HEIGHT / 2 - 50);
        }
       if (!gameOver && started)
       {
          g.drawString(String.valueOf(score),WIDTH / 2 -25, 100); 
+         
         }
   }  
   public static void main(String[] args)
