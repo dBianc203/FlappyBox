@@ -28,6 +28,7 @@ public class FlappyBox implements ActionListener, MouseListener, KeyListener
   public Random rand;
   public int ticks,yMotion; 
   public int score = 0;
+  public int SaveScore = 0;
   public ArrayList<Rectangle> columns;
   public boolean gameOver, started;
   public FlappyBox()
@@ -67,7 +68,8 @@ public class FlappyBox implements ActionListener, MouseListener, KeyListener
       {
           box = new Rectangle(WIDTH / 2 -10, HEIGHT / 2-10, 20, 20);
           columns.clear();
-      
+          yMotion = 0;
+          score = 0;
           addColumn(true);
           addColumn(true);
           addColumn(true);
@@ -199,20 +201,23 @@ public class FlappyBox implements ActionListener, MouseListener, KeyListener
         paintColumn(g, column);
       }
       g.setColor(Color.white);
-      g.setFont(new Font("Arial", 1, 100));
+      g.setFont(new Font("Arial", 1, 50));
       if (!started)
       {
-          g.drawString("Click to start!", 100, HEIGHT / 2 - 50);
+          g.drawString("Click to start!", 225, HEIGHT / 2 - 50);
       }
       if (gameOver)
-      {
-          score = 0;
-          g.drawString("Game Over!", 100, HEIGHT / 2 - 50);
+      { 
+         SaveScore = score;
+         g.drawString("Previous Score:",WIDTH / 2 -400, 750);
+         g.drawString(String.valueOf(SaveScore),WIDTH / 2 -20, 750);
+         g.drawString("Game Over!", 250, HEIGHT / 2 - 75);        
        }
       if (!gameOver && started)
       {
          g.drawString(String.valueOf(score),WIDTH / 2 -25, 100); 
-         
+         g.drawString("Previous Score:",WIDTH / 2 -400, 750);
+         g.drawString(String.valueOf(SaveScore),WIDTH / 2 -20, 750);     
         }
   }  
   public static void main(String[] args)
